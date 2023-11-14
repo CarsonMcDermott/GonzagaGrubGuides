@@ -14,13 +14,53 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Create a Review</title>
+        <title>Make a Review</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
+        <!-- Page Header -->
+        <h1>Make a Review</h1>
         
+        <!-- Action needs to be updated when Back-End implementation start -->
+        <form action="https://wp.zybooks.com/form-viewer.php" method="post">
+            <!-- Restaurant Name -->
+            <label for="restaurantName">Choose a restaurant:</label>
+            <select name="restaurantName" id="restaurantName">
+                <option value="restaurantName1">restaurantName1</option>
+                <option value="restaurantName2">restaurantName2</option>
+                <option value="restaurantName3">restaurantName3</option>
+                <option value="restaurantName4">restaurantName4</option>
+            </select>
+        <br>
+        <br>
+        <!-- Rating: Radio Buttons -->
+        <div id="RatingRadioButton">
+            <fieldset id="ratingFieldset">
+                <legend>Rating</legend>
+                <input type="radio" class="radio" name="radio1" value="radio1" id="radio1" />
+                <label for="y">1 Star</label>
+                <input type="radio" class="radio" name="radio2" value="radio2" id="radio2" />
+                <label for="y">2 Stars</label>
+                <input type="radio" class="radio" name="radio3" value="radio3" id="radio3" />
+                <label for="y">3 Stars</label>
+                <input type="radio" class="radio" name="radio4" value="radio4" id="radio4" />
+                <label for="y">4 Stars</label>
+                <input type="radio" class="radio" name="radio5" value="radio5" id="radio5" />
+                <label for="y">5 Stars</label>
+            </fieldset>
+        </div>
+        <br>
+            <!-- Comments -->
+            <label for="comments">Comments:</label>
+            <input type="text" id="comments" name="comments" placeholder="I thought this restaurant was...">
+        <br>
+        <br>
+        
+        <input type="submit" value="Submit">
+
+        </form>
 
     </body>
 </html>
