@@ -93,12 +93,17 @@ h1, h2 {
 
 
 /* Style the buttons */
+#header > legend {
+    font-family: 'Courier New', Courier, monospace;
+}
+
 .btn {
     border: none;
     outline: none;
     padding: 12px 16px;
     background-color: #f1f1f1;
     cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
   }
   
   /* Add a light grey background on mouse-over */
@@ -110,4 +115,5 @@ h1, h2 {
   .btn.active {
     background-color: #666;
     color: white;
+    font-family: 'Courier New', Courier, monospace;
   }
