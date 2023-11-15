@@ -2,6 +2,10 @@
 This will contain all the CSS styling for the all web pages.
 */
 
+body {
+    background-color: lightgrey;
+}
+
 .RatingRadioButton {
     overflow: hidden
 }
