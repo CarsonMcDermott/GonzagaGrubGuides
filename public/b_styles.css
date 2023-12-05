@@ -34,6 +34,10 @@ h1, h2 {
 #header > h2 {
     flex: 0 1 80%;
 }
+.nav-bar {
+    border: solid #000000;
+    border-radius: 10px;
+}
 .nav-bar > ul {
     display: flex;
     flex-direction: row;
