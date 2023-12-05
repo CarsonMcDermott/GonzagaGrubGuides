@@ -1,16 +1,19 @@
-CREATE TABLE Restaurant (
-    Title VARCHAR(255) PRIMARY KEY,
-    Food VARCHAR(100),
-    Located VARCHAR(255),
-    Phone VARCHAR(15),
-    Rating INT,
-    Bio VARCHAR(255)
+
+
+CREATE TABLE restaurant (
+    name VARCHAR(255) PRIMARY KEY,
+    address VARCHAR(100),
+    phone_number VARCHAR(255),
+    food_type VARCHAR(15),
+    bio VARCHAR(255),
+    picture blob
 );
 
-CREATE TABLE Review (
-    Review_id INT PRIMARY KEY,
-    Restaurant VARCHAR(255),
-    Rating INT,
+CREATE TABLE review (
+    review_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255),
+    rating INT,
     comments VARCHAR(255),
-    FOREIGN KEY (Restaurant) REFERENCES Restaurant(Title)
+    
+    FOREIGN KEY (name) REFERENCES gonzagagrubguides.Restaurant(name)
 );

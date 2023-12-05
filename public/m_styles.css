@@ -1,0 +1,59 @@
+body {
+    background-color: lightgrey;
+}
+h1, h2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.restaurant-picture {
+    flex: 0 1 35%;
+}
+.restaurant-picture > img{
+    height: 200px;
+    width: 300px;
+    border-radius: 10px;
+    padding: 5px;
+}
+.nav-bar {
+    border: solid #000000;
+    border-radius: 10px;
+}
+.nav-bar > ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0px;
+    gap: 10px;
+}
+.nav-bar > ul > li {
+    flex-grow: 1;
+    text-align: center;
+}
+.nav-bar ul > li > a {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    font-variant-caps: small-caps;
+    text-decoration: none;
+}
+.nav-bar > ul > li > a:hover{
+    background-color: rgb(61, 61, 217);
+    color: #FFFFFF;
+    padding: 10px;
+    text-decoration: overline;
+    font-weight: bold;
+}
+.restaurant-info {
+    flex: 0 1 55%;
+}
+.restaurant-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+}
+.restaurant-info > h3 {
+    padding: 0px;
+    margin-bottom: 0px;
+}
+.restaurant-info > p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    font-weight: bold;
+}

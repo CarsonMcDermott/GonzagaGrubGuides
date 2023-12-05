@@ -1,0 +1,7 @@
+{
+    "host": "localhost",
+    "user": "root",
+    "password": "GonzagaGrubs",
+    "port": 3000,
+    "database": "gonzagagrubguides"
+}
