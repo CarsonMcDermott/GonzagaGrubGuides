@@ -8,9 +8,10 @@ CREATE TABLE Restaurant (
 );
 
 CREATE TABLE Review (
-    review_id INT PRIMARY KEY,
+    review_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
     rating INT,
     comments VARCHAR(255),
-    FOREIGN KEY (name) REFERENCES Restaurant(name)
+    
+    FOREIGN KEY (name) REFERENCES gonzagagrubguides.Restaurant(name)
 );
