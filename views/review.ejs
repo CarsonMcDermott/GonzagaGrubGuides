@@ -12,13 +12,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Home</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="styles.css"> -->
-        <%- include('../partials/header') %>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <!-- Page Header -->
@@ -37,10 +36,11 @@
             <!-- Restaurant Name -->
             <label for="restaurantName">Choose a restaurant:</label>
             <select name="restaurantName" id="restaurantName">
-                <option value="restaurantName1">restaurantName1</option>
-                <option value="restaurantName2">restaurantName2</option>
-                <option value="restaurantName3">restaurantName3</option>
-                <option value="restaurantName4">restaurantName4</option>
+                <% names.forEach((val)=>{
+                    %>
+                        <option value="<%= val.name %>"><%= val.name %></option>
+                    <%
+                }) %>
             </select>
         <br>
         <br>

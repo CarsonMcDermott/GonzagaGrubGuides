@@ -77,3 +77,13 @@ app.get("/allRestaurants", function (req, res) {
     
 //     cn.end();
 // });
+
+app.get('/review', function(req, res) {
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'SELECT name FROM restaurant';
+    cn.query(q, function(err, names, fields) {
+        if (err) {console.log('Error: ', err);}
+        res.render('review', {names});
+    })
+});
