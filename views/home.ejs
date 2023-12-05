@@ -15,14 +15,13 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
-        <!-- <%- include('../partials/header') %>     -->
     </head>
     <body>
         <h1>Gonzaga Grub Guide</h1>
         <div class="nav-bar">
             <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="allRestuarants.html">View All Restaurants</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/allRestaurants">View All Restaurants</a></li>
                 <li><a href="review.html">Leave a Review</a></li>
                 <li><a href="newRestaurant.html">Add a Restaurant</a></li>
             </ul>
@@ -31,6 +30,19 @@
             <h2>Top 5 Restaurants</h3>
             <button id="shuffle"><a href="restaurant.html">Find a Random Restaurant</a></button>
         </div>
+
+        <!-- These should dynamically generate the top 5 rated restaurants -->
+        <div class="dynamicRestaurants">
+            <h2>Dynamic Restaurant Display:</h2>
+            <ul>
+                
+            </ul>
+        </div>
+
+        <br>
+        <h1>TEST FOR DYNAMIC CONTENT</h1>
+        <br>
+
         <div class="single-restaurant">
             <div class="restaurant-info">
                 <h3>Frugals</h3>
