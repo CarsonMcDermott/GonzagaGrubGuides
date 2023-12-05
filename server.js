@@ -34,3 +34,22 @@ app.post('/newRestaurant.html', function(req, res) {
     
     cn.end();
 });
+
+// app.post('/review.html', function(req, res) {
+//     var name = req.body.restaurantName;
+//     var address = req.body.address;
+//     var phone_number = req.body.phoneNumber;
+//     var food_type = req.body.foodType;
+//     var bio = req.body.bio;
+//     var picture = req.body.imageUpload;
+//     var cn = mysql.createConnection(config);
+//     cn.connect();
+//     const q = 'INSERT INTO restaurant VALUE (?, ?, ?, ?, ?, ?)';
+//     cn.query(q, [name, address, phone_number, food_type, bio, picture]);
+//     // TODO: Add error Handeling for duplicates and others
+//     const q2 = 'SELECT * FROM restaurant WHERE name = ?';
+//     cn.query(q2, [name]);
+//     res.send(`<html><body><h1>${name}</h1></body></html>`);
+    
+//     cn.end();
+// });

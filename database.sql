@@ -1,4 +1,6 @@
-CREATE TABLE Restaurant (
+
+
+CREATE TABLE restaurant (
     name VARCHAR(255) PRIMARY KEY,
     address VARCHAR(100),
     phone_number VARCHAR(255),
@@ -7,7 +9,7 @@ CREATE TABLE Restaurant (
     picture blob
 );
 
-CREATE TABLE Review (
+CREATE TABLE review (
     review_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
     rating INT,
