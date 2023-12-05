@@ -30,7 +30,7 @@ app.post('/newRestaurant.html', function(req, res) {
     // TODO: Add error Handeling for duplicates and others
     const q2 = 'SELECT * FROM restaurant WHERE name = ?';
     cn.query(q2, [name]);
-    res.send('<html><body><h1>Name</h1></body></html>');
+    res.send(`<html><body><h1>${name}</h1></body></html>`);
     
     cn.end();
 });
