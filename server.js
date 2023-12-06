@@ -14,7 +14,16 @@ app.listen(3001, function() {
     console.log("Listening on Port 3001...");
 });
 app.get("/", function (req, res) {
-    return res.render("home");
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'SELECT * FROM restaurant LIMIT 5';
+    cn.query(q, function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+        console.log(rows);
+        res.render("home", {rows : rows});
+    });
+    cn.end();
+    
 });
 app.get("/allRestaurants", function (req, res) {
     res.render('allRestaurants');
@@ -66,8 +75,6 @@ app.post('/newRestaurant.html', function(req, res) {
             bio : rows[0].bio
         });
     });
-    
-
     cn.end();
 });
 
@@ -98,4 +105,5 @@ app.get('/review', function(req, res) {
         if (err) {console.log('Error: ', err);}
         res.render('review', {names});
     })
+    cn.end();
 });
