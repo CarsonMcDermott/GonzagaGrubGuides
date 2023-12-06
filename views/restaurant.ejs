@@ -33,22 +33,22 @@
                 <li><a href="/newRestaurant">Add a Restaurant</a></li>
             </ul>
         </div>
-        <h1><%= name %></h1>
+        <h1><%= row.name %></h1>
         <ul class="restaurant-info">
-            <li>Type: <%= food_type %></li>
+            <li>Type: <%= row.food_type %></li>
             <li>Rating: 4</li>
-            <li>Address: <%= address %></li>
-            <li>Phone # <%= phone_number %></li>
-            <li>Bio: <%= bio %></li>
+            <li>Address: <%= row.address %></li>
+            <li>Phone # <%= row.phone_number %></li>
+            <li>Bio: <%= row.bio %></li>
         </ul>
         <div class="restaurant-picture">
             <img src=
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9Gc
             TNijPh7a_s6AgUkMyfp3ZDj8CN5lp0jhR0Gg&usqp=CAU">
         </div>
-        <a href="allReviews.html">
-        <button>view all reviews</button>
-        </a>
-
+        <form method="post" action="/restaurant">
+            <input type="text" name="name" value="<%= row.name %>" hidden>
+            <input type="submit" value="View All Reviews"></button>
+        </form>
     </body>
 </html>

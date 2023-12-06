@@ -16,24 +16,59 @@ app.listen(3001, function() {
 app.get("/", function (req, res) {
     var cn = mysql.createConnection(config);
     cn.connect();
-    const q = 'SELECT * FROM restaurant LIMIT 5';
+    const q = 'SELECT * FROM restaurant';
     cn.query(q, function(err, rows, fields) {
         if (err) {console.log('Error: ', err);}
-        console.log(rows);
         res.render("home", {rows : rows});
     });
-    cn.end();
-    
+    cn.end();  
 });
 app.get("/allRestaurants", function (req, res) {
-    res.render('allRestaurants');
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'SELECT * FROM restaurant';
+    cn.query(q, function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+        res.render("allRestaurants", {rows : rows});
+    });
+    cn.end();
 });
 app.get("/allReviews", function (req, res) {
-    res.render('allReviews');
+    var name = req.body.button;
+    console.log(name);
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'SELECT * FROM review WHERE name=?';
+    cn.query(q, [name], function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+        res.render('allReviews', {rows : rows});
+    });
+    cn.end();
 });
-
+app.get('/random_restaurant', function(req, res) {
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'SELECT * FROM restaurant';
+    cn.query(q, function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+        var index = Math.floor(Math.random() * rows.length);
+        res.render('restaurant', {row : rows[index]});
+    });
+    cn.end();
+});
 app.get('/restaurant', function(req, res) {
-    res.render('restaurnt');
+    res.render('restaurant');
+});
+app.post('/restaurant', function(req, res) {
+    var name = req.body.name;
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'SELECT * FROM review WHERE name=?';
+    cn.query(q, [name], function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+        res.render('allReviews', {rows : rows});
+    });
+    cn.end();
 });
 app.get('/newRestaurant', function(req, res) {
     res.sendFile(__dirname + '/views/newRestaurant.html');
@@ -67,18 +102,15 @@ app.post('/newRestaurant.html', function(req, res) {
     });
     const q2 = 'SELECT * FROM restaurant WHERE name = ?';
     cn.query(q2, [name], function(err, rows, fields) {
+        console.log(rows);
         res.render('restaurant', {
-            name : rows[0].name,
-            address : rows[0].address,
-            phone_number : rows[0].phone_number,
-            food_type : rows[0].food_type,
-            bio : rows[0].bio
+            row: rows[0]
         });
     });
     cn.end();
 });
 
-app.post('/review.html', function(req, res) {
+app.post('/review', function(req, res) {
     var name = req.body.restaurantName;
     var rating = req.body.radio;
     var comments = req.body.comments;
@@ -92,7 +124,7 @@ app.post('/review.html', function(req, res) {
     const q2 = 'SELECT * FROM review WHERE name = ?';
     cn.query(q2, [name], function(err, rows, fields) {
         if (err) {console.log('Error: ', err);}
-        res.render('allReviews');
+        res.render('allReviews', {rows : rows});
     });
     cn.end();
 });
@@ -103,7 +135,7 @@ app.get('/review', function(req, res) {
     const q = 'SELECT name FROM restaurant';
     cn.query(q, function(err, names, fields) {
         if (err) {console.log('Error: ', err);}
-        res.render('review', {names});
+        res.render('review', {names : names});
     })
     cn.end();
 });

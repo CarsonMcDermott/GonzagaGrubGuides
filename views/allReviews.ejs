@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <h1>Restaurant Name Reviews</h1>
+        <h1>All Reviews</h1>
         <div class="nav-bar">
             <ul>
                 <li><a href="/">Home</a></li>
@@ -28,14 +28,12 @@
                 <li><a href="/newRestaurant">Add a Restaurant</a></li>
             </ul>
         </div>
-        <div id="header">
-            <h2>Rating:</h2>
-        </div>
-        <p>5</p>
-        <div id="header">
-            <h2>Comment:</h2>
-        </div>
-        <textarea rows="10" cols="15"> This was the best spaghetti I've ever had.</textarea>
-
+        <% rows.forEach((val)=>{ %>
+            <h2><%= val.name %></h2>
+            <h3>Rating: <%= val.rating %></h3>
+            <h4>Comments: </h4>
+            <p><%= val.comments %></p>
+            <%
+        }) %>
     </body>
 </html>
