@@ -28,12 +28,31 @@
         </div>
         <div id="header">
             <h2>Top 5 Restaurants</h3>
-            <button id="shuffle"><a href="restaurant.html">Find a Random Restaurant</a></button>
+            <button id="shuffle"><a href="/random_restaurant">Find a Random Restaurant</a></button>
         </div>
 
         <!-- These should dynamically generate the top 5 rated restaurants -->
         <div class="dynamicRestaurants">
             <h2>Dynamic Restaurant Display:</h2>
+            <% rows.forEach((val)=>{ 
+                %>
+                <div class="single-restaurant">
+                    <div class="restaurant-info">
+                        <h3><%= val.name %></h3>
+                        <ul>
+                            <li>Type: <%= val.food_type %></li>
+                            <li>Rating: 4</li>
+                            <li>Address: <%= val.address %></li>
+                            <li>Phone #: <%= val.phone_number %></li>
+                            <li>Bio: <%= val.bio %></li>
+                        </ul>
+                    </div>
+                    <div class="restaurant-picture">
+                        <p>dont know how to add pictures yet</p>
+                    </div>
+                </div> 
+                <%
+            }) %>
             <ul>
                 
             </ul>

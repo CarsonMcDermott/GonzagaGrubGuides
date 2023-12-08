@@ -1,30 +1,77 @@
 const express = require('express');
 const mysql = require('mysql2');
-// const ejs = require('ejs');
+const ejs = require('ejs');
 
 const config = require('./config.json');
 
 const app = express();
 app.set('view engine', 'ejs');
-// app.use(express.static('public'));
 app.use(express.static('public'));
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
 
-// app.set('view engine', 'ejs');
-
 app.listen(3001, function() {
     console.log("Listening on Port 3001...");
 });
-
 app.get("/", function (req, res) {
-    return res.render("home.ejs");
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'SELECT * FROM restaurant';
+    cn.query(q, function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+        res.render("home", {rows : rows});
+    });
+    cn.end();  
 });
-
-
-
 app.get("/allRestaurants", function (req, res) {
-  return res.render("allRestaurants.ejs");
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'SELECT * FROM restaurant';
+    cn.query(q, function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+        res.render("allRestaurants", {rows : rows});
+    });
+    cn.end();
+});
+app.get("/allReviews", function (req, res) {
+    var name = req.body.button;
+    console.log(name);
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'SELECT * FROM review WHERE name=?';
+    cn.query(q, [name], function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+        res.render('allReviews', {rows : rows});
+    });
+    cn.end();
+});
+app.get('/random_restaurant', function(req, res) {
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'SELECT * FROM restaurant';
+    cn.query(q, function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+        var index = Math.floor(Math.random() * rows.length);
+        res.render('restaurant', {row : rows[index]});
+    });
+    cn.end();
+});
+app.get('/restaurant', function(req, res) {
+    res.render('restaurant');
+});
+app.post('/restaurant', function(req, res) {
+    var name = req.body.name;
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'SELECT * FROM review WHERE name=?';
+    cn.query(q, [name], function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+        res.render('allReviews', {rows : rows});
+    });
+    cn.end();
+});
+app.get('/newRestaurant', function(req, res) {
+    res.sendFile(__dirname + '/views/newRestaurant.html');
 });
 
 // app.get('/', (req, res) => {
@@ -40,43 +87,47 @@ app.get("/allRestaurants", function (req, res) {
 //     res.render('/views/pages/index', {name});
 // });
 
-// app.post('/newRestaurant.html', function(req, res) {
-//     var name = req.body.restaurantName;
-//     var address = req.body.address;
-//     var phone_number = req.body.phoneNumber;
-//     var food_type = req.body.foodType;
-//     var bio = req.body.bio;
-//     var picture = req.body.imageUpload;
-//     var cn = mysql.createConnection(config);
-//     cn.connect();
-//     const q = 'INSERT INTO restaurant VALUE (?, ?, ?, ?, ?, ?)';
-//     cn.query(q, [name, address, phone_number, food_type, bio, picture]);
-//     // TODO: Add error Handeling for duplicates and others
-//     const q2 = 'SELECT * FROM restaurant WHERE name = ?';
-//     cn.query(q2, [name]);
-//     res.send(`<html><body><h1>${name}</h1></body></html>`);
-    
-//     cn.end();
-// });
+app.post('/newRestaurant.html', function(req, res) {
+    var name = req.body.restaurantName;
+    var address = req.body.address;
+    var phone_number = req.body.phoneNumber;
+    var food_type = req.body.foodType;
+    var bio = req.body.bio;
+    var picture = req.body.imageUpload;
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'INSERT INTO restaurant VALUE (?, ?, ?, ?, ?, ?)';
+    cn.query(q, [name, address, phone_number, food_type, bio, picture], function(err) {
+        if (err) {console.log('Error: ', err);}
+    });
+    const q2 = 'SELECT * FROM restaurant WHERE name = ?';
+    cn.query(q2, [name], function(err, rows, fields) {
+        console.log(rows);
+        res.render('restaurant', {
+            row: rows[0]
+        });
+    });
+    cn.end();
+});
 
-// app.post('/review.html', function(req, res) {
-//     var name = req.body.restaurantName;
-//     var address = req.body.address;
-//     var phone_number = req.body.phoneNumber;
-//     var food_type = req.body.foodType;
-//     var bio = req.body.bio;
-//     var picture = req.body.imageUpload;
-//     var cn = mysql.createConnection(config);
-//     cn.connect();
-//     const q = 'INSERT INTO restaurant VALUE (?, ?, ?, ?, ?, ?)';
-//     cn.query(q, [name, address, phone_number, food_type, bio, picture]);
-//     // TODO: Add error Handeling for duplicates and others
-//     const q2 = 'SELECT * FROM restaurant WHERE name = ?';
-//     cn.query(q2, [name]);
-//     res.send(`<html><body><h1>${name}</h1></body></html>`);
-    
-//     cn.end();
-// });
+app.post('/review', function(req, res) {
+    var name = req.body.restaurantName;
+    var rating = req.body.radio;
+    var comments = req.body.comments;
+    var picture = req.body.imageUpload;
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'INSERT INTO review (name, rating, comments, picture) VALUE (?, ?, ?, ?)';
+    cn.query(q, [name, rating, comments, picture], function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+    });
+    const q2 = 'SELECT * FROM review WHERE name = ?';
+    cn.query(q2, [name], function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+        res.render('allReviews', {rows : rows});
+    });
+    cn.end();
+});
 
 app.get('/review', function(req, res) {
     var cn = mysql.createConnection(config);
@@ -84,6 +135,7 @@ app.get('/review', function(req, res) {
     const q = 'SELECT name FROM restaurant';
     cn.query(q, function(err, names, fields) {
         if (err) {console.log('Error: ', err);}
-        res.render('review', {names});
+        res.render('review', {names : names});
     })
+    cn.end();
 });

@@ -39,39 +39,31 @@ h1, h2 {
     text-decoration: overline;
     font-weight: bold;
 }
-
 body {
     background-color: lightgrey;
 }
-
 .RatingRadioButton {
     overflow: hidden
-}
-  
+} 
 .radioButtons {
     float: left;
     clear: none;
 }
-  
 label {
     float: left;
     clear: none;
     display: block;
     padding: 0px 1em 0px 8px;
 }
-  
 input[type=radio], input.radio {
     float: left;
     clear: none;
     margin: 2px 0 0 2px;
 }
-
 #comments {
     width: 500px;
-    height: 100px;
-    
+    height: 100px;  
 }
-
 #ratingFieldset {
     border: 0;
 }
@@ -139,7 +131,6 @@ input[type=radio], input.radio {
 #header > legend {
     font-family: 'Courier New', Courier, monospace;
 }
-
 .btn {
     border: none;
     outline: none;
@@ -147,15 +138,13 @@ input[type=radio], input.radio {
     background-color: #f1f1f1;
     cursor: pointer;
     font-family: 'Courier New', Courier, monospace;
-  }
-  
-  /* Add a light grey background on mouse-over */
-  .btn:hover {
-    background-color: #ddd;
-  }
-  
-  /* Add a dark background to the active button */
-  .btn.active {
+}
+/* Add a light grey background on mouse-over */
+.btn:hover {
+    background-color: #ddd; 
+}
+/* Add a dark background to the active button */
+.btn.active {
     background-color: #666;
     color: white;
     font-family: 'Courier New', Courier, monospace;
