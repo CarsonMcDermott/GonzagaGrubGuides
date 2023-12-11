@@ -37,7 +37,6 @@ app.get("/allRestaurants", function (req, res) {
 });
 app.get("/allReviews", function (req, res) {
     var name = req.body.button;
-    console.log(name);
     var cn = mysql.createConnection(config);
     cn.connect();
     const q = 'SELECT * FROM review WHERE name=?';
@@ -59,7 +58,16 @@ app.get('/random_restaurant', function(req, res) {
     cn.end();
 });
 app.get('/restaurant', function(req, res) {
-    res.render('restaurant');
+    var name = req.query.name;
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'SELECT name, address, phone_number, food_type, bio, r.picture, ROUND(AVG(rating), 1) as rating  \
+                FROM restaurant r JOIN review re USING (name) WHERE name = ? GROUP BY name';
+    cn.query(q, [name], function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+        res.render('restaurant', {row : rows[0]});
+    });
+    cn.end();
 });
 app.post('/restaurant', function(req, res) {
     var name = req.body.name;
@@ -104,7 +112,6 @@ app.post('/newRestaurant.html', function(req, res) {
     });
     const q2 = 'SELECT * FROM restaurant WHERE name = ?';
     cn.query(q2, [name], function(err, rows, fields) {
-        console.log(rows);
         res.render('restaurant', {
             row: rows[0]
         });
