@@ -21,15 +21,17 @@ CREATE TABLE review (
 
 INSERT INTO restaurant VALUES 
 ("Pita Pit", "818 E Sharp Ave, Spokane WA 99202", "509-483-7482", "Veggies",
- "We provide a healthy alternative for Gonzaga Students to eat!", NULL),
+ "We provide a healthy alternative for Gonzaga Students to eat!", LOAD_FILE('photos/Pita_Pit_restaurant.jpg')),
 ("Pizza Pipeline", "1403 N Division St, Spokane WA 99202", "509-326-6412", "Pizza",
-  "We make the best food for all Gonzaga students to devour!", NULL),
+  "We make the best food for all Gonzaga students to devour!", LOAD_FILE('photos/ls.jpg')),
 ("Qdoba", "1117 N Dakota, Spokane WA 99206", "509-313-7216", "Burrito",
- "We provide close food for all Gonzaga Studnets to swallow!", NULL),
+ "We provide close food for all Gonzaga Studnets to swallow!", LOAD_FILE('photos/OIP.jpg')),
 ("Jimmy John's", "105 E Mission Ave, Spokane WA 99202", "509-327-3278", "Sandwiches",
- "We are here for Gonzaga students to come if they want", NULL),
+ "We are here for Gonzaga students to come if they want", LOAD_FILE('photos/jimmy-johns-menu.png')),
 ("Frugals", "1229 N Hamilton St, Spokane, WA 99202", "509-242-3669", "Burgers",
-  "We make goood food for all Gonzaga students to enjoy!",LOAD_FILE('downloads/5YO7ry6u0f.png'));
+  "We make goood food for all Gonzaga students to enjoy!",LOAD_FILE('photos/5YO7ry6u0f.png'));
 
-INSERT INTO review (name, rating, comments) VALUES ("Pita Pit", 1, "Bad"), ("Pita Pit", 2, "Not Good"), ("Pita Pit", 3, "Mid"), ("Pita Pit", 4, "Good"),
-("Pita Pit", 5, "This is the most immaculate food I have ever tasted, swallowed, and dissolved in my life");  
+INSERT INTO review (name, rating, comments, picture) VALUES ("Pita Pit", 1, "Bad", LOAD_FILE('photos/Pita_Pit_restaurant.jpg')),
+ ("Pita Pit", 2, "Not Good", LOAD_FILE('photos/Pita_Pit_restaurant.jpg')), ("Pita Pit", 3, "Mid", LOAD_FILE('photos/Pita_Pit_restaurant.jpg')),
+ ("Pita Pit", 4, "Good", LOAD_FILE('photos/Pita_Pit_restaurant.jpg')),
+("Pita Pit", 5, "This is the most immaculate food I have ever tasted, swallowed, and dissolved in my life", LOAD_FILE('photos/Pita_Pit_restaurant.jpg'));
