@@ -24,15 +24,15 @@
         <h1>Leave a Review</h1>
         <div class="nav-bar">
             <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="allRestuarants.html">View All Restaurants</a></li>
-                <li><a href="review.html">Leave a Review</a></li>
-                <li><a href="newRestaurant.html">Add a Restaurant</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/allRestaurants">View All Restaurants</a></li>
+                <li><a href="/review">Leave a Review</a></li>
+                <li><a href="/newRestaurant">Add a Restaurant</a></li>
             </ul>
         </div>
         <br>
         <!-- Action needs to be updated when Back-End implementation start -->
-        <form action="https://wp.zybooks.com/form-viewer.php" method="post">
+        <form action="/review" method="post">
             <!-- Restaurant Name -->
             <label for="restaurantName">Choose a restaurant:</label>
             <select name="restaurantName" id="restaurantName">
@@ -42,39 +42,36 @@
                     <%
                 }) %>
             </select>
-        <br>
-        <br>
-        <!-- Rating: Radio Buttons -->
-        <div id="RatingRadioButton">
-            <fieldset id="ratingFieldset">
-                <legend>Rating</legend>
-                <input type="radio" class="radio" name="radio" value="1" id="radio1" />
-                <label for="y">1 Star</label>
-                <input type="radio" class="radio" name="radio" value="2" id="radio2" />
-                <label for="y">2 Stars</label>
-                <input type="radio" class="radio" name="radio" value="3" id="radio3" />
-                <label for="y">3 Stars</label>
-                <input type="radio" class="radio" name="radio" value="4" id="radio4" />
-                <label for="y">4 Stars</label>
-                <input type="radio" class="radio" name="radio" value="5" id="radio5" />
-                <label for="y">5 Stars</label>
-            </fieldset>
-        </div>
-        <br>
+            <br>
+            <br>
+            <!-- Rating: Radio Buttons -->
+            <div id="RatingRadioButton">
+                <fieldset id="ratingFieldset">
+                    <legend>Rating</legend>
+                    <input type="radio" class="radio" name="radio" value="1" id="radio1" />
+                    <label for="y">1 Star</label>
+                    <input type="radio" class="radio" name="radio" value="2" id="radio2" />
+                    <label for="y">2 Stars</label>
+                    <input type="radio" class="radio" name="radio" value="3" id="radio3" />
+                    <label for="y">3 Stars</label>
+                    <input type="radio" class="radio" name="radio" value="4" id="radio4" />
+                    <label for="y">4 Stars</label>
+                    <input type="radio" class="radio" name="radio" value="5" id="radio5" />
+                    <label for="y">5 Stars</label>
+                </fieldset>
+            </div>
+            <br>
             <!-- Comments -->
             <label for="comments">Comments:</label>
             <textarea name="comments" rows="8" cols="100" placeholder="I thought this restaurant was..."></textarea>
-        <br>
-        <br>
+            <br>
+            <br>
             <!-- Picture Upload -->
             <label for="imageUpload">Upload an Image (.png/.jpeg):</label>
             <input type="file" id="imageUpload" name="imageUpload" accept="image/png, image/jpeg" />
-        <br> 
-        <br>
-        
-        <input type="submit" value="Submit">
-
+            <br> 
+            <br>
+            <input type="submit" value="Submit">
         </form>
-
     </body>
 </html>

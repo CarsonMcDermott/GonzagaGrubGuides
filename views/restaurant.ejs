@@ -17,40 +17,38 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Home</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="styles.css"> -->
-        <%- include('../partials/header') %>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <h1>Restaurant Name</h1>
         <div class="nav-bar">
             <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="allRestuarants.html">View All Restaurants</a></li>
-                <li><a href="review.html">Leave a Review</a></li>
-                <li><a href="newRestaurant.html">Add a Restaurant</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/allRestaurants">View All Restaurants</a></li>
+                <li><a href="/review">Leave a Review</a></li>
+                <li><a href="/newRestaurant">Add a Restaurant</a></li>
             </ul>
         </div>
-        
+        <h1><%= row.name %></h1>
         <ul class="restaurant-info">
-            <li>Type: Fast Food</li>
-            <li>Rating: 3</li>
-            <li>Address: 6969 Somewhere Ave</li>
-            <li>Phone # 420-102-8347:</li>
-            <li>Bio: We sell food technically</li>
+            <li>Type: <%= row.food_type %></li>
+            <li>Rating: 4</li>
+            <li>Address: <%= row.address %></li>
+            <li>Phone # <%= row.phone_number %></li>
+            <li>Bio: <%= row.bio %></li>
         </ul>
         <div class="restaurant-picture">
             <img src=
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9Gc
             TNijPh7a_s6AgUkMyfp3ZDj8CN5lp0jhR0Gg&usqp=CAU">
         </div>
-        <a href="allReviews.html">
-        <button>view all reviews</button>
-        </a>
-
+        <form method="post" action="/restaurant">
+            <input type="text" name="name" value="<%= row.name %>" hidden>
+            <input type="submit" value="View All Reviews"></button>
+        </form>
     </body>
 </html>

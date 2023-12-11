@@ -1,4 +1,5 @@
-
+DROP TABLE IF EXISTS review;
+DROP TABLE IF EXISTS restaurant;
 
 CREATE TABLE restaurant (
     name VARCHAR(255) PRIMARY KEY,
@@ -6,7 +7,7 @@ CREATE TABLE restaurant (
     phone_number VARCHAR(255),
     food_type VARCHAR(15),
     bio VARCHAR(255),
-    picture blob
+    picture BLOB
 );
 
 CREATE TABLE review (
@@ -14,7 +15,7 @@ CREATE TABLE review (
     name VARCHAR(255),
     rating INT,
     comments VARCHAR(255),
-    
+    picture BLOB,
     FOREIGN KEY (name) REFERENCES gonzagagrubguides.Restaurant(name)
 );
 
@@ -30,5 +31,5 @@ INSERT INTO restaurant VALUES
 ("Frugals", "1229 N Hamilton St, Spokane, WA 99202", "509-242-3669", "Burgers",
   "We make goood food for all Gonzaga students to enjoy!",LOAD_FILE('downloads/5YO7ry6u0f.png'));
 
-INSERT INTO review VALUES ("Pita Pit", 1, "Bad"), ("Pita Pit", 2, "Not Good"), ("Pita Pit", 3, "Mid"), ("Pita Pit", 4, "Good"),
+INSERT INTO review (name, rating, comments) VALUES ("Pita Pit", 1, "Bad"), ("Pita Pit", 2, "Not Good"), ("Pita Pit", 3, "Mid"), ("Pita Pit", 4, "Good"),
 ("Pita Pit", 5, "This is the most immaculate food I have ever tasted, swallowed, and dissolved in my life");  

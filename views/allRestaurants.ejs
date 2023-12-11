@@ -25,9 +25,9 @@
         <div class="nav-bar">
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/allREstaurants">View All Restaurants</a></li>
-                <li><a href="review.html">Leave a Review</a></li>
-                <li><a href="newRestaurant.html">Add a Restaurant</a></li>
+                <li><a href="/allRestaurants">View All Restaurants</a></li>
+                <li><a href="/review">Leave a Review</a></li>
+                <li><a href="/newRestaurant">Add a Restaurant</a></li>
             </ul>
         </div>
         <div id="header">
@@ -38,6 +38,25 @@
             <button class="btn" onclick="filterSelection('review')"> Review</button>
             <button class="btn" onclick="filterSelection('name')"> Name</button>
         </div>
+        <% rows.forEach((val)=>{ 
+            %>
+            <div class="single-restaurant">
+                <div class="restaurant-info">
+                    <h3><%= val.name %></h3>
+                    <ul>
+                        <li>Type: <%= val.food_type %></li>
+                        <li>Rating: 4</li>
+                        <li>Address: <%= val.address %></li>
+                        <li>Phone #: <%= val.phone_number %></li>
+                        <li>Bio: <%= val.bio %></li>
+                    </ul>
+                </div>
+                <div class="restaurant-picture">
+                    <p>dont know how to add pictures yet</p>
+                </div>
+            </div> 
+            <%
+        }) %>
         <div class="single-restaurant">
             <div class="restaurant-info">
                 <h3>Frugals</h3>
