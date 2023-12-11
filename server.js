@@ -16,7 +16,8 @@ app.listen(3001, function() {
 app.get("/", function (req, res) {
     var cn = mysql.createConnection(config);
     cn.connect();
-    const q = 'SELECT * FROM restaurant';
+    const q = 'SELECT name, address, phone_number, food_type, bio, r.picture, ROUND(AVG(rating), 1) as rating  \
+                FROM restaurant r JOIN review re USING (name) GROUP BY name ORDER BY rating DESC';
     cn.query(q, function(err, rows, fields) {
         if (err) {console.log('Error: ', err);}
         res.render("home", {rows : rows});
@@ -26,7 +27,8 @@ app.get("/", function (req, res) {
 app.get("/allRestaurants", function (req, res) {
     var cn = mysql.createConnection(config);
     cn.connect();
-    const q = 'SELECT * FROM restaurant';
+    const q = 'SELECT name, address, phone_number, food_type, bio, r.picture, ROUND(AVG(rating), 1) as rating  \
+                FROM restaurant r JOIN review re USING (name) GROUP BY name';
     cn.query(q, function(err, rows, fields) {
         if (err) {console.log('Error: ', err);}
         res.render("allRestaurants", {rows : rows});
