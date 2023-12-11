@@ -17,7 +17,7 @@ app.get("/", function (req, res) {
     var cn = mysql.createConnection(config);
     cn.connect();
     const q = 'SELECT name, address, phone_number, food_type, bio, r.picture, ROUND(AVG(rating), 1) as rating  \
-                FROM restaurant r JOIN review re USING (name) GROUP BY name ORDER BY rating DESC';
+                FROM restaurant r JOIN review re USING (name) GROUP BY name ORDER BY rating DESC LIMIT 5';
     cn.query(q, function(err, rows, fields) {
         if (err) {console.log('Error: ', err);}
         res.render("home", {rows : rows});
@@ -34,6 +34,28 @@ app.get("/allRestaurants", function (req, res) {
         res.render("allRestaurants", {rows : rows});
     });
     cn.end();
+});
+app.get("/sortByRating", function (req, res) {
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'SELECT name, address, phone_number, food_type, bio, r.picture, ROUND(AVG(rating), 1) as rating  \
+                FROM restaurant r JOIN review re USING (name) GROUP BY name ORDER BY rating DESC';
+    cn.query(q, function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+        res.render("allRestaurants", {rows : rows});
+    });
+    cn.end();  
+});
+app.get("/sortByName", function (req, res) {
+    var cn = mysql.createConnection(config);
+    cn.connect();
+    const q = 'SELECT name, address, phone_number, food_type, bio, r.picture, ROUND(AVG(rating), 1) as rating  \
+                FROM restaurant r JOIN review re USING (name) GROUP BY name ORDER BY name';
+    cn.query(q, function(err, rows, fields) {
+        if (err) {console.log('Error: ', err);}
+        res.render("allRestaurants", {rows : rows});
+    });
+    cn.end();  
 });
 app.get("/allReviews", function (req, res) {
     var name = req.body.button;
@@ -83,19 +105,6 @@ app.post('/restaurant', function(req, res) {
 app.get('/newRestaurant', function(req, res) {
     res.sendFile(__dirname + '/views/newRestaurant.html');
 });
-
-// app.get('/', (req, res) => {
-//     const name = 'John Doe'; // Replace with your desired dynamic data
-//     res.render('home', { name });
-//   });
-
-// app.get('/', function(req, res) {
-//     res.sendFile(__dirname + '/views/pages/home.html');
-// });
-// app.get('/', function (req, res) {
-//     const name = 'John Stirrat is a very intellectual individual!';
-//     res.render('/views/pages/index', {name});
-// });
 
 app.post('/newRestaurant.html', function(req, res) {
     var name = req.body.restaurantName;
