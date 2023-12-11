@@ -33,15 +33,15 @@
             <h2>All Gonzaga Area Resturants</h3>
             <!-- Control buttons -->
             <legend>Filter By:</legend>
-            <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-            <button class="btn" onclick="filterSelection('review')"> Review</button>
-            <button class="btn" onclick="filterSelection('name')"> Name</button>
+            <button><a href="/allRestaurants">Show all</a></button>
+            <button><a href="/sortByRating">Rating</a></button>
+            <button><a href="/sortByName">Name</a></button>
         </div>
         <% rows.forEach((val)=>{ 
             %>
             <div class="single-restaurant">
                 <div class="restaurant-info">
-                    <h3><%= val.name %></h3>
+                    <h3><a href="/restaurant?name=<%= val.name %>"><%= val.name %></a></h3>
                     <ul>
                         <li>Type: <%= val.food_type %></li>
                         <li>Rating: <%= val.rating %></li>

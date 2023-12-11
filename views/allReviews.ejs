@@ -28,11 +28,12 @@
                 <li><a href="/newRestaurant">Add a Restaurant</a></li>
             </ul>
         </div>
+        <h1><%= rows[0].name %></h1>
         <% rows.forEach((val)=>{ %>
-            <h2><%= val.name %></h2>
-            <h3>Rating: <%= val.rating %></h3>
-            <h4>Comments: </h4>
-            <p><%= val.comments %></p>
+            <div class="single-review">
+                <h3>Rating: <%= val.rating %></h3>
+                <h4>Comments: <%= val.comments %></h4>
+            </div>
             <%
         }) %>
     </body>
