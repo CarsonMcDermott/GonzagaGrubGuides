@@ -36,15 +36,13 @@
         <h1><%= row.name %></h1>
         <ul class="restaurant-info">
             <li>Type: <%= row.food_type %></li>
-            <li>Rating: 4</li>
+            <li>Rating: <%= row.rating %></li>
             <li>Address: <%= row.address %></li>
             <li>Phone # <%= row.phone_number %></li>
             <li>Bio: <%= row.bio %></li>
         </ul>
         <div class="restaurant-picture">
-            <img src=
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9Gc
-            TNijPh7a_s6AgUkMyfp3ZDj8CN5lp0jhR0Gg&usqp=CAU">
+            <p>still cant make pictures appear</p>
         </div>
         <form method="post" action="/restaurant">
             <input type="text" name="name" value="<%= row.name %>" hidden>
