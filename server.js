@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const ejs = require('ejs');
+const fs = require('fs')
 
 const config = require('./config.json');
 
@@ -87,7 +88,7 @@ app.get('/restaurant', function(req, res) {
                 FROM restaurant r JOIN review re USING (name) WHERE name = ? GROUP BY name';
     cn.query(q, [name], function(err, rows, fields) {
         if (err) {console.log('Error: ', err);}
-        res.render('restaurant', {row : rows[0]});
+        res.render('restaurant', {row : rows[0],});
     });
     cn.end();
 });
