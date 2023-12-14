@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const ejs = require('ejs');
 const fs = require('fs')
+const formidable = require('formidable');
 
 const config = require('./config.json');
 
@@ -107,6 +108,18 @@ app.get('/newRestaurant', function(req, res) {
     res.sendFile(__dirname + '/views/newRestaurant.html');
 });
 app.post('/newRestaurant.html', function(req, res) {
+    // if (req.url == '/newRestaurant.html'){
+    //     var form = new formidable.IncomingForm();
+    //     form.parse(req, function(err, fields, files) {
+    //         console.log("file uploaded");
+    //         var oldpath = files.imageUpload.filepath;
+    //         var newpath = __dirname + "/photos/" + files.imageUpload.originalFilename;
+    //         fs.rename(oldpath, newpath, function (err) {
+    //             if (err) throw err;
+    //             console.log("File Uploaded.");
+    //         });
+    //     });
+    // }
     var name = req.body.restaurantName;
     var address = req.body.address;
     var phone_number = req.body.phoneNumber;
