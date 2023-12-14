@@ -108,18 +108,19 @@ app.get('/newRestaurant', function(req, res) {
     res.sendFile(__dirname + '/views/newRestaurant.html');
 });
 app.post('/newRestaurant.html', function(req, res) {
-    var image = req.files.imageUpload;
-    console.log(image);
-    image.mv('./photos/' + image, function(err) {
-        if (err) {console.log(err);}
-        console.log('picture uploaded');
-    })
     var name = req.body.restaurantName;
     var address = req.body.address;
     var phone_number = req.body.phoneNumber;
     var food_type = req.body.foodType;
     var bio = req.body.bio;
-    var picture = req.body.imageUpload;
+    // var picture = req.body.imageUpload;
+
+    var image = req.files.imageUpload;
+    image.mv('./photos/' + image + '.jpg');
+    // image.mv('./photos/' + image, function(err) {
+    //     console.log('picture uploaded');
+    // });
+
     var cn = mysql.createConnection(config);
     cn.connect();
     const q = 'INSERT INTO restaurant VALUE (?, ?, ?, ?, ?, ?)';
