@@ -131,7 +131,13 @@ app.post('/review', function(req, res) {
     var name = req.body.restaurantName;
     var rating = req.body.radio;
     var comments = req.body.comments;
-    var picture = req.body.imageUpload;
+    // var picture = req.body.imageUpload;
+        //Don't need this anymore
+
+    // https://stackoverflow.com/questions/73378041/how-can-i-transfer-an-image-from-html-to-nodejs-to-use-it-with-ejs
+    var image = req.files.imageUpload;
+    image.mv('./photos/' + name + '.jpg');
+    
     var cn = mysql.createConnection(config);
     cn.connect();
     const q = 'INSERT INTO review (name, rating, comments, picture) VALUE (?, ?, ?, ?)';
