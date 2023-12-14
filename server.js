@@ -106,7 +106,6 @@ app.post('/restaurant', function(req, res) {
 app.get('/newRestaurant', function(req, res) {
     res.sendFile(__dirname + '/views/newRestaurant.html');
 });
-
 app.post('/newRestaurant.html', function(req, res) {
     var name = req.body.restaurantName;
     var address = req.body.address;
@@ -128,7 +127,6 @@ app.post('/newRestaurant.html', function(req, res) {
     });
     cn.end();
 });
-
 app.post('/review', function(req, res) {
     var name = req.body.restaurantName;
     var rating = req.body.radio;
@@ -147,7 +145,6 @@ app.post('/review', function(req, res) {
     });
     cn.end();
 });
-
 app.get('/review', function(req, res) {
     var cn = mysql.createConnection(config);
     cn.connect();
