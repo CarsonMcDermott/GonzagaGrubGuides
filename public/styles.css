@@ -127,6 +127,11 @@ input[type=radio], input.radio {
     border-radius: 10px;
     padding: 5px;
 }
+.single-review {
+    border: solid #000000;
+    border-radius: 10px;
+    font-size: larger;
+}
 /* Style the buttons */
 #header > legend {
     font-family: 'Courier New', Courier, monospace;

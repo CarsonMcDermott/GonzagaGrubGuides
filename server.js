@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const ejs = require('ejs');
+const fs = require('fs')
 
 const config = require('./config.json');
 

@@ -36,7 +36,7 @@
             %>
             <div class="single-restaurant">
                 <div class="restaurant-info">
-                    <h3><%= val.name %></h3>
+                    <h3><a href="/restaurant?name=<%= val.name %>"><%= val.name %></a></h3>
                     <ul>
                         <li>Type: <%= val.food_type %></li>
                         <li>Rating: <%= val.rating %></li>
