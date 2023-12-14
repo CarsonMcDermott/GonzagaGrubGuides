@@ -1,8 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const ejs = require('ejs');
-const fs = require('fs')
-const formidable = require('formidable');
+const fileupload = require('express-fileupload');
 
 const config = require('./config.json');
 
@@ -11,6 +10,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
+app.use(fileupload());
 
 app.listen(3001, function() {
     console.log("Listening on Port 3001...");
@@ -108,18 +108,12 @@ app.get('/newRestaurant', function(req, res) {
     res.sendFile(__dirname + '/views/newRestaurant.html');
 });
 app.post('/newRestaurant.html', function(req, res) {
-    // if (req.url == '/newRestaurant.html'){
-    //     var form = new formidable.IncomingForm();
-    //     form.parse(req, function(err, fields, files) {
-    //         console.log("file uploaded");
-    //         var oldpath = files.imageUpload.filepath;
-    //         var newpath = __dirname + "/photos/" + files.imageUpload.originalFilename;
-    //         fs.rename(oldpath, newpath, function (err) {
-    //             if (err) throw err;
-    //             console.log("File Uploaded.");
-    //         });
-    //     });
-    // }
+    var image = req.files.imageUpload;
+    console.log(image);
+    image.mv('./photos/' + image, function(err) {
+        if (err) {console.log(err);}
+        console.log('picture uploaded');
+    })
     var name = req.body.restaurantName;
     var address = req.body.address;
     var phone_number = req.body.phoneNumber;

@@ -2,6 +2,7 @@
   "dependencies": {
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-fileupload": "^1.4.3",
     "formidable": "^3.5.1",
     "mysql2": "^3.0.0"
   }
