@@ -116,7 +116,7 @@ app.post('/newRestaurant.html', function(req, res) {
     var bio = req.body.bio;
     var picture = name + '.jpg';
     var image = req.files.imageUpload;
-    image.mv('./photos/' + name + '.jpg');
+    image.mv('./public/photos/' + name + '.jpg');
     var cn = mysql.createConnection(config);
     cn.connect();
     const q = 'INSERT INTO restaurant VALUE (?, ?, ?, ?, ?, ?)';
