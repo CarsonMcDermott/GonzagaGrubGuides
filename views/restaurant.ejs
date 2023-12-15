@@ -42,7 +42,7 @@
             <li>Bio: <%= row.bio %></li>
         </ul>
         <div class="restaurant-picture">
-            <p>still cant make pictures appear</p>
+            <img src="../public/photos/<%= val.picture %>">
         </div>
         <form method="post" action="/restaurant">
             <input type="text" name="name" value="<%= row.name %>" hidden>

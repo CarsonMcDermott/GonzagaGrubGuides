@@ -73,7 +73,8 @@ app.get("/allReviews", function (req, res) {
 app.get('/random_restaurant', function(req, res) {
     var cn = mysql.createConnection(config);
     cn.connect();
-    const q = 'SELECT * FROM restaurant';
+    const q = 'SELECT name, address, phone_number, food_type, bio, r.picture, ROUND(AVG(rating), 1) as rating  \
+                FROM restaurant r JOIN review re USING (name) GROUP BY name';
     cn.query(q, function(err, rows, fields) {
         if (err) {console.log('Error: ', err);}
         var index = Math.floor(Math.random() * rows.length);
@@ -113,21 +114,21 @@ app.post('/newRestaurant.html', function(req, res) {
     var phone_number = req.body.phoneNumber;
     var food_type = req.body.foodType;
     var bio = req.body.bio;
-    // var picture = req.body.imageUpload;
-
+    var picture = name + '.jpg';
     var image = req.files.imageUpload;
-    image.mv('./photos/' + image + '.jpg');
-    // image.mv('./photos/' + image, function(err) {
-    //     console.log('picture uploaded');
-    // });
-
+    image.mv('./photos/' + name + '.jpg');
     var cn = mysql.createConnection(config);
     cn.connect();
     const q = 'INSERT INTO restaurant VALUE (?, ?, ?, ?, ?, ?)';
     cn.query(q, [name, address, phone_number, food_type, bio, picture], function(err) {
         if (err) {console.log('Error: ', err);}
     });
-    const q2 = 'SELECT * FROM restaurant WHERE name = ?';
+    const q1 = 'INSERT INTO review (name) VALUE (?)'
+    cn.query(q1, [name], function(err) {
+        if (err) {console.log('Error: ', err);}
+    });
+    const q2 = 'SELECT name, address, phone_number, food_type, bio, r.picture, ROUND(AVG(rating), 1) as rating  \
+                FROM restaurant r JOIN review re USING (name) WHERE name = ? GROUP BY name';
     cn.query(q2, [name], function(err, rows, fields) {
         res.render('restaurant', {
             row: rows[0]
